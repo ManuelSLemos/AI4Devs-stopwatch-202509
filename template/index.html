@@ -1,13 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch & Countdown Timer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>Timer and Countdown</h1>
-<script src="script.js"></script>
+    <div class="container">
+        <!-- Header con Tabs -->
+        <header class="header">
+            <h1 class="main-title">Timer Application</h1>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="stopwatch" aria-label="Stopwatch tab">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="13" r="8"></circle>
+                        <path d="M12 9v4l2 2"></path>
+                        <path d="M9 2h6"></path>
+                    </svg>
+                    Stopwatch
+                </button>
+                <button class="tab-btn" data-tab="countdown" aria-label="Countdown tab">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="13" r="8"></circle>
+                        <path d="M12 7v6l4 2"></path>
+                        <path d="M5 3L3 5"></path>
+                        <path d="M19 3l2 2"></path>
+                    </svg>
+                    Countdown
+                </button>
+            </div>
+        </header>
+
+        <!-- Stopwatch Section -->
+        <section id="stopwatch-section" class="timer-section active" role="tabpanel" aria-labelledby="stopwatch-tab">
+            <div class="timer-card">
+                <div class="display-container">
+                    <div class="display" id="stopwatch-display" aria-live="polite">00:00:00.00</div>
+                </div>
+                
+                <div class="controls">
+                    <button class="btn btn-primary" id="stopwatch-start" aria-label="Start stopwatch">
+                        <svg class="btn-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        Start
+                    </button>
+                    <button class="btn btn-secondary" id="stopwatch-lap" disabled aria-label="Record lap">
+                        <svg class="btn-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 8v4l3 3"></path>
+                        </svg>
+                        Lap
+                    </button>
+                    <button class="btn btn-reset" id="stopwatch-reset" aria-label="Reset stopwatch">
+                        <svg class="btn-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                            <path d="M21 3v5h-5"></path>
+                            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                            <path d="M3 21v-5h5"></path>
+                        </svg>
+                        Reset
+                    </button>
+                </div>
+
+                <div class="laps-container">
+                    <h3 class="laps-title">Lap Times</h3>
+                    <div id="laps-list" class="laps-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Countdown Section -->
+        <section id="countdown-section" class="timer-section" role="tabpanel" aria-labelledby="countdown-tab">
+            <div class="timer-card">
+                <div class="display-container">
+                    <div class="display" id="countdown-display" aria-live="polite">00:00:00</div>
+                    <div class="timesup-message" id="timesup-message">TIME'S UP! ⏰</div>
+                </div>
+
+                <div class="time-inputs">
+                    <div class="input-group">
+                        <label for="hours-input">Hours</label>
+                        <input type="number" id="hours-input" min="0" max="23" value="0" aria-label="Hours input">
+                    </div>
+                    <div class="input-separator">:</div>
+                    <div class="input-group">
+                        <label for="minutes-input">Minutes</label>
+                        <input type="number" id="minutes-input" min="0" max="59" value="0" aria-label="Minutes input">
+                    </div>
+                    <div class="input-separator">:</div>
+                    <div class="input-group">
+                        <label for="seconds-input">Seconds</label>
+                        <input type="number" id="seconds-input" min="0" max="59" value="0" aria-label="Seconds input">
+                    </div>
+                </div>
+
+                <div class="presets">
+                    <button class="preset-btn" data-seconds="60">1 min</button>
+                    <button class="preset-btn" data-seconds="300">5 min</button>
+                    <button class="preset-btn" data-seconds="600">10 min</button>
+                    <button class="preset-btn" data-seconds="1800">30 min</button>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary" id="countdown-start" aria-label="Start countdown">
+                        <svg class="btn-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        Start
+                    </button>
+                    <button class="btn btn-reset" id="countdown-reset" aria-label="Reset countdown">
+                        <svg class="btn-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                            <path d="M21 3v5h-5"></path>
+                            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                            <path d="M3 21v-5h5"></path>
+                        </svg>
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer con atajos de teclado -->
+        <footer class="footer">
+            <p class="shortcuts-info">
+                <strong>Keyboard shortcuts:</strong> 
+                <kbd>Space</kbd> Start/Pause • 
+                <kbd>R</kbd> Reset • 
+                <kbd>L</kbd> Lap (Stopwatch)
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

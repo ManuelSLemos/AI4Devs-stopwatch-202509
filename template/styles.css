@@ -1,0 +1,589 @@
+/* ===========================
+   CSS Variables
+   =========================== */
+:root {
+    --color-bg: #f5f5f5;
+    --color-white: #ffffff;
+    --color-text: #333333;
+    --color-text-light: #666666;
+    --color-text-lighter: #999999;
+    
+    --color-stopwatch: #2196F3;
+    --color-stopwatch-hover: #1976D2;
+    --color-countdown: #4CAF50;
+    --color-countdown-hover: #388E3C;
+    
+    --color-danger: #f44336;
+    --color-danger-hover: #d32f2f;
+    
+    --color-secondary: #757575;
+    --color-secondary-hover: #616161;
+    
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    
+    --border-radius: 12px;
+    --border-radius-sm: 8px;
+    
+    --transition: all 0.3s ease;
+}
+
+/* ===========================
+   Reset & Base Styles
+   =========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--color-text);
+}
+
+/* ===========================
+   Container & Layout
+   =========================== */
+.container {
+    width: 100%;
+    max-width: 600px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===========================
+   Header & Tabs
+   =========================== */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.main-title {
+    color: var(--color-white);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 6px;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+}
+
+.tab-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.tab-btn.active {
+    background: var(--color-white);
+    color: var(--color-text);
+    box-shadow: var(--shadow-md);
+}
+
+.tab-btn svg {
+    transition: var(--transition);
+}
+
+.tab-btn.active svg {
+    transform: scale(1.1);
+}
+
+/* ===========================
+   Timer Sections
+   =========================== */
+.timer-section {
+    display: none;
+    animation: slideIn 0.4s ease;
+}
+
+.timer-section.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.timer-card {
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    padding: 40px 30px;
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===========================
+   Display
+   =========================== */
+.display-container {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.display {
+    font-family: 'Roboto Mono', 'Courier New', monospace;
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text);
+    letter-spacing: 0.05em;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition);
+}
+
+.timesup-message {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-danger);
+    text-align: center;
+    width: 100%;
+    animation: pulse 1s infinite;
+}
+
+.timesup-message.show {
+    display: block;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+.countdown-finished .display {
+    background: #ffebee;
+    color: var(--color-danger);
+}
+
+/* ===========================
+   Time Inputs
+   =========================== */
+.time-inputs {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group label {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 70px;
+    padding: 12px;
+    font-size: 1.5rem;
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    border: 2px solid #e0e0e0;
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--color-countdown);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.input-separator {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text-light);
+    margin-bottom: 8px;
+}
+
+/* ===========================
+   Presets
+   =========================== */
+.presets {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.preset-btn {
+    flex: 1;
+    min-width: 70px;
+    padding: 10px 16px;
+    border: 2px solid var(--color-countdown);
+    background: transparent;
+    color: var(--color-countdown);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.preset-btn:hover {
+    background: var(--color-countdown);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.preset-btn:active {
+    transform: translateY(0);
+}
+
+/* ===========================
+   Controls (Buttons)
+   =========================== */
+.controls {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:not(:disabled):active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Stopwatch primary button */
+#stopwatch-section .btn-primary {
+    background: var(--color-stopwatch);
+    color: white;
+}
+
+#stopwatch-section .btn-primary:hover:not(:disabled) {
+    background: var(--color-stopwatch-hover);
+}
+
+/* Countdown primary button */
+#countdown-section .btn-primary {
+    background: var(--color-countdown);
+    color: white;
+}
+
+#countdown-section .btn-primary:hover:not(:disabled) {
+    background: var(--color-countdown-hover);
+}
+
+.btn-secondary {
+    background: var(--color-secondary);
+    color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--color-secondary-hover);
+}
+
+.btn-reset {
+    background: #f5f5f5;
+    color: var(--color-text);
+}
+
+.btn-reset:hover:not(:disabled) {
+    background: #e0e0e0;
+}
+
+/* Pause state */
+.btn-primary.pause {
+    background: var(--color-danger) !important;
+}
+
+.btn-primary.pause:hover:not(:disabled) {
+    background: var(--color-danger-hover) !important;
+}
+
+/* ===========================
+   Laps
+   =========================== */
+.laps-container {
+    margin-top: 30px;
+}
+
+.laps-title {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 15px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.laps-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: var(--border-radius-sm);
+}
+
+.lap-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    margin-bottom: 8px;
+    border-radius: var(--border-radius-sm);
+    animation: lapSlideIn 0.3s ease;
+}
+
+@keyframes lapSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.lap-number {
+    font-weight: 500;
+    color: var(--color-stopwatch);
+}
+
+.lap-time {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.laps-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.laps-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.laps-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.laps-list::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* ===========================
+   Footer
+   =========================== */
+.footer {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.shortcuts-info {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.shortcuts-info strong {
+    color: white;
+}
+
+kbd {
+    display: inline-block;
+    padding: 3px 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ===========================
+   Responsive Design
+   =========================== */
+@media (max-width: 640px) {
+    .main-title {
+        font-size: 1.5rem;
+    }
+    
+    .timer-card {
+        padding: 30px 20px;
+    }
+    
+    .display {
+        font-size: 2.5rem;
+        padding: 15px;
+    }
+    
+    .timesup-message {
+        font-size: 1.5rem;
+    }
+    
+    .tab-btn {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+    }
+    
+    .tab-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .input-group input {
+        width: 60px;
+        font-size: 1.25rem;
+        padding: 10px;
+    }
+    
+    .input-separator {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .presets {
+        gap: 8px;
+    }
+    
+    .preset-btn {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+    
+    .shortcuts-info {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .display {
+        font-size: 2rem;
+    }
+    
+    .controls {
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1;
+        min-width: 100px;
+        justify-content: center;
+    }
+}
+
+/* ===========================
+   Accessibility
+   =========================== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus visible for keyboard navigation */
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--color-stopwatch);
+    outline-offset: 2px;
+}
+

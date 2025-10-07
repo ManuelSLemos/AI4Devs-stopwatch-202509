@@ -1,36 +1,128 @@
-# Stopwatch EN
+# ⏱️ Stopwatch & Countdown Timer
 
-Use what you’ve learned about prompt engineering to create a stopwatch and countdown.
+Una aplicación web profesional y moderna que incluye un **Cronómetro (Stopwatch)** y un **Temporizador de Cuenta Atrás (Countdown Timer)**.
 
-Reference: https://www.online-stopwatch.com/ (see res/stopwatch.png for design reference)
+![Stopwatch Preview](res/stopwatch.png)
 
-Do it using the seed index.html + script.js
+## ✨ Características
 
-Use a chatbot, like ChatGPT or Gemini, not a code assistant in an IDE like Copilot.
+### 🏃 Cronómetro (Stopwatch)
+- **Display de alta precisión**: Formato HH:MM:SS.MS (milisegundos)
+- **Controles completos**:
+  - ▶️ Start/Pause - Inicia o pausa el cronómetro
+  - 🔄 Reset - Reinicia a 00:00:00.00
+  - ⏱️ Lap - Registra tiempos parciales
+- **Lista de Laps**: Visualiza los últimos 10 tiempos parciales
+- **Precisión**: Actualización cada 10ms para máxima exactitud
 
-Tip: if it allows image analysis, you can upload it to easily obtain a design similar to the reference.
+### ⏳ Cuenta Atrás (Countdown)
+- **Display claro**: Formato HH:MM:SS
+- **Configuración flexible**: Inputs separados para horas, minutos y segundos
+- **Presets rápidos**: Botones para 1min, 5min, 10min, 30min
+- **Controles**:
+  - ▶️ Start/Pause - Inicia o pausa la cuenta atrás
+  - 🔄 Reset - Vuelve al tiempo configurado
+- **Alertas al finalizar**:
+  - ⚡ Animación visual (parpadeo y cambio de color)
+  - 🔔 Sonido de alerta (beep)
+  - 📢 Mensaje "TIME'S UP!"
 
-To submit the exercise, make a pull request that includes not only the generated code but also, crucially, the prompt used in the file prompts.md. Also, add the prompt in the comment.
+## 🎨 Diseño
 
-To submit, make a pull request that includes a folder copied from the template, with the name stopwatch-initials (e.g., stopwatch-ARM). It should include not only the generated code but also, crucially, the prompt used and the chatbot used in prompts.md. If you’ve used more than one prompt until reaching a suitable solution, add them all in order. Also, include the final prompt in the pull request comment.
+- **Interfaz moderna**: Diseño card con degradado de fondo
+- **Sistema de pestañas**: Alterna fácilmente entre Stopwatch y Countdown
+- **Totalmente responsive**: Adaptado para móviles, tablets y desktop
+- **Paleta de colores profesional**:
+  - Stopwatch: Azul (#2196F3)
+  - Countdown: Verde (#4CAF50)
+- **Animaciones suaves**: Transiciones CSS elegantes
+- **Iconos SVG**: Interfaz visual intuitiva
 
-Good luck!
+## ⌨️ Atajos de Teclado
 
-# Stopwatch ES
+- `Space` - Start/Pause (en la pestaña activa)
+- `R` - Reset
+- `L` - Lap (solo en Stopwatch)
 
-Utiliza lo aprendido sobre prompt engineering para crear un **cronómetro y cuenta atrás**. 
+## 💾 Persistencia de Datos
 
-Referencia: [https://www.online-stopwatch.com/](https://www.online-stopwatch.com/) (ver res/stopwatch.png, referencia de diseño)
+La aplicación guarda automáticamente tu estado usando **localStorage**:
+- ✅ Pestaña activa
+- ✅ Tiempo del cronómetro
+- ✅ Lista de laps
+- ✅ Configuración del countdown
 
-Hazlo apoyado en el seed `index.html` + `script.js`
+## 🚀 Uso
 
-Utiliza un chatbot, como ChatGPT o Gemini, no un asistente de código en IDE como Copilot.
+1. Abre el archivo `template/index.html` en tu navegador
+2. Selecciona la pestaña deseada (Stopwatch o Countdown)
+3. Usa los controles o atajos de teclado
+4. ¡Disfruta de la aplicación!
 
-Tip: si permite el análisis de imágenes, puedes subirla para obtener fácilmente un diseño similar al de referencia.
+## 📂 Estructura de Archivos
 
-Para entregar el ejercicio, haz un pull request que incluya no solo el código generado, sino también, fundamental, el prompt utilizado en el fichero prompts.md. Añade además el prompt en el comentario.
+```
+s2 - stopwatch/
+├── template/
+│   ├── index.html      # Estructura HTML
+│   ├── styles.css      # Estilos CSS
+│   └── script.js       # Lógica JavaScript
+├── res/
+│   └── stopwatch.png   # Imagen de preview
+└── README.md           # Documentación
+```
 
+## 💻 Tecnologías
 
-Para entregar, haz una pull request que incluya una carpeta copiada de template, con el nombre `stopwatch-iniciales` (ejemplo `stopwatch-ARM`). Debe incluir no solo el código generado, sino también, fundamental, **el prompt utilizado y el chatbot utilizado** en `prompts.md`. Si has usado más de un prompt hasta llegar a una solución adecuada, añade todos en orden. Añade además el prompt final en el comentario del pull request.
+- **HTML5**: Semántico y accesible
+- **CSS3**: Variables CSS, Flexbox, Grid, Animaciones
+- **JavaScript ES6+**: Vanilla JS puro, sin dependencias
+- **Google Fonts**: Roboto & Roboto Mono
 
-¡Éxitos!
+## 🎯 Características Técnicas
+
+- ✅ Código limpio y bien comentado
+- ✅ Funciones reutilizables
+- ✅ Event listeners eficientes
+- ✅ Accesibilidad básica (aria-labels)
+- ✅ Soporte para prefers-reduced-motion
+- ✅ Sin dependencias externas
+
+## 📱 Responsive
+
+La aplicación está optimizada para:
+- 📱 Móviles (320px+)
+- 📱 Tablets (640px+)
+- 💻 Desktop (1024px+)
+
+## 🌟 Extras Implementados
+
+- ✅ Animaciones CSS suaves
+- ✅ Efectos hover en botones
+- ✅ Atajos de teclado (Space, R, L)
+- ✅ Persistencia con localStorage
+- ✅ Accesibilidad (aria-labels, focus-visible)
+- ✅ Sonido de alerta en countdown
+- ✅ Auto-guardado de estado
+
+## 🔧 Instalación
+
+No requiere instalación. Solo abre el archivo HTML en tu navegador:
+
+```bash
+# Opción 1: Abrir directamente
+open template/index.html
+
+# Opción 2: Servidor local (opcional)
+cd template
+python -m http.server 8000
+# Luego visita: http://localhost:8000
+```
+
+## 📝 Licencia
+
+Proyecto libre para uso personal y educativo.
+
+---
+
+**Desarrollado con ❤️ usando HTML, CSS y JavaScript vanilla**
